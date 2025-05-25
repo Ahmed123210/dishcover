@@ -1,116 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dishcover</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dishcover - اكتشف أفضل المطاعم</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background-color: #f7f9fb;
-    }
-    header {
-      background-color: #1e3d58;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.8rem;
-    }
-    header p {
-      font-size: 1.1rem;
-      opacity: 0.8;
-    }
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-      max-width: 1100px;
-      margin: auto;
-    }
-    .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      overflow: hidden;
-      transition: transform 0.2s ease;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-    .card-content {
-      padding: 1rem;
-      text-align: center;
-    }
-    .card-content h2 {
-      margin: 0 0 0.5rem;
-      font-size: 1.3rem;
-      color: #1e3d58;
-    }
-    .card-content a {
-      display: inline-block;
-      margin-top: 0.5rem;
-      text-decoration: none;
-      color: #fff;
-      background: #1e3d58;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      transition: background 0.3s ease;
-    }
-    .card-content a:hover {
-      background: #163247;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #eaecef;
-      font-size: 0.9rem;
-      color: #555;
+      font-family: 'Cairo', sans-serif;
     }
   </style>
 </head>
-<body>
-  <header>
-    <h1>Dishcover</h1>
-    <p>Discover top restaurant reviews in one place</p>
-  </header>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Hero Section -->
+  <section class="bg-[url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092')] bg-cover bg-center h-[60vh] flex items-center justify-center text-white">
+    <div class="bg-black/60 p-8 rounded-xl text-center max-w-2xl">
+      <h1 class="text-4xl font-bold mb-4">اكتشف أطيب الأطباق من تقييمات حقيقية</h1>
+      <p class="mb-6">Dishcover يساعدك في اختيار أفضل المطاعم والكافيهات بناءً على تجارب المستخدمين</p>
+      <a href="#restaurants" class="bg-red-500 hover:bg-red-600 transition px-6 py-3 rounded-full font-semibold">ابدأ الاستكشاف</a>
+    </div>
+  </section>
 
-  <main class="container">
-    <div class="card">
-      <img src="https://source.unsplash.com/400x300/?restaurant,asian" alt="Chi Restaurant">
-      <div class="card-content">
-        <h2>Chi Restaurant & Bar</h2>
-        <a href="./Chi-Restaurant-Bar/">View Reviews</a>
-      </div>
+  <!-- Search and Filter -->
+  <section class="p-6 max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row gap-4 justify-between items-center">
+      <input type="text" placeholder="ابحث عن مطعم..." class="w-full md:w-1/2 p-3 rounded-xl border border-gray-300" />
+      <select class="w-full md:w-1/4 p-3 rounded-xl border border-gray-300">
+        <option>كل الأنواع</option>
+        <option>مصري</option>
+        <option>إيطالي</option>
+        <option>كافيه</option>
+      </select>
     </div>
-    <div class="card">
-      <img src="https://source.unsplash.com/400x300/?burger,food" alt="Burger Town">
-      <div class="card-content">
-        <h2>Burger Town</h2>
-        <a href="./Burger-Town/">View Reviews</a>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://source.unsplash.com/400x300/?pasta,restaurant" alt="Pasta Palace">
-      <div class="card-content">
-        <h2>Pasta Palace</h2>
-        <a href="./Pasta-Palace/">View Reviews</a>
-      </div>
-    </div>
-  </main>
+  </section>
 
-  <footer>
-    &copy; 2025 Dishcover. All rights reserved.
+  <!-- Restaurants Grid -->
+  <section id="restaurants" class="p-6 max-w-6xl mx-auto">
+    <h2 class="text-2xl font-bold mb-4">أبرز المطاعم</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Restaurant Card -->
+      <div class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5" class="w-full h-48 object-cover" />
+        <div class="p-4">
+          <h3 class="font-semibold text-xl mb-1">مطعم الطربوش</h3>
+          <p class="text-sm text-gray-600 mb-2">أكل مصري تقليدي</p>
+          <div class="flex items-center mb-2 text-yellow-500">
+            ⭐⭐⭐⭐☆ (4.2)
+          </div>
+          <a href="#" class="text-red-500 hover:underline font-medium">عرض التقييمات</a>
+        </div>
+      </div>
+      <!-- Add more cards as needed -->
+    </div>
+  </section>
+
+  <!-- Featured Reviews -->
+  <section class="bg-white py-10 mt-10">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-6">تقييمات مختارة</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-gray-100 p-4 rounded-xl">
+          <p class="text-sm mb-2">"الأكل كان ممتاز والخدمة رائعة، أنصح بتجربة الفتة!"</p>
+          <div class="text-sm text-gray-600">— أحمد، عن مطعم الطربوش</div>
+        </div>
+        <div class="bg-gray-100 p-4 rounded-xl">
+          <p class="text-sm mb-2">"الديكور جميل جدًا والقهوة ممتازة، سأعود بالتأكيد."</p>
+          <div class="text-sm text-gray-600">— سارة، عن كافيه روز</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white p-6 mt-10 text-center rounded-t-xl">
+    <p>© 2025 Dishcover. جميع الحقوق محفوظة.</p>
+    <div class="mt-2 space-x-4 rtl:space-x-reverse">
+      <a href="#" class="hover:underline">عن الموقع</a>
+      <a href="#" class="hover:underline">تواصل معنا</a>
+    </div>
   </footer>
 </body>
 </html>
