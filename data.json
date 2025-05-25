@@ -1,0 +1,22 @@
+[
+  {
+    "id": "tarboush",
+    "name": "مطعم الطربوش",
+    "type": "مصري",
+    "rating": 3.8,
+    "reviews": [
+      {
+        "source": "Google Maps",
+        "author": "أحمد",
+        "comment": "الخدمة بطيئة جدًا",
+        "rating": 2
+      },
+      {
+        "source": "منى",
+        "comment": "الأكل بارد والتعامل سيء",
+        "rating": 1,
+        "source": "Google Maps"
+      }
+    ]
+  }
+]
