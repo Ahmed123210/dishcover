@@ -1,84 +1,74 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dishcover - اكتشف أفضل المطاعم</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Dishcover - تقييمات سلبية</title>
   <style>
     body {
-      font-family: 'Cairo', sans-serif;
+      font-family: sans-serif;
+      background: #f9f9f9;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .restaurant {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .restaurant h2 {
+      margin: 0 0 10px;
+      color: #d43f3a;
+    }
+    .review {
+      background: #f1f1f1;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+    }
+    .rating {
+      font-weight: bold;
+      color: #ff9800;
     }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-  <!-- Hero Section -->
-  <section class="bg-[url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092')] bg-cover bg-center h-[60vh] flex items-center justify-center text-white">
-    <div class="bg-black/60 p-8 rounded-xl text-center max-w-2xl">
-      <h1 class="text-4xl font-bold mb-4">اكتشف أطيب الأطباق من تقييمات حقيقية</h1>
-      <p class="mb-6">Dishcover يساعدك في اختيار أفضل المطاعم والكافيهات بناءً على تجارب المستخدمين</p>
-      <a href="#restaurants" class="bg-red-500 hover:bg-red-600 transition px-6 py-3 rounded-full font-semibold">ابدأ الاستكشاف</a>
-    </div>
-  </section>
+<body>
+  <h1>عرض التقييمات السلبية للمطاعم</h1>
+  <div id="output"></div>
 
-  <!-- Search and Filter -->
-  <section class="p-6 max-w-6xl mx-auto">
-    <div class="flex flex-col md:flex-row gap-4 justify-between items-center">
-      <input type="text" placeholder="ابحث عن مطعم..." class="w-full md:w-1/2 p-3 rounded-xl border border-gray-300" />
-      <select class="w-full md:w-1/4 p-3 rounded-xl border border-gray-300">
-        <option>كل الأنواع</option>
-        <option>مصري</option>
-        <option>إيطالي</option>
-        <option>كافيه</option>
-      </select>
-    </div>
-  </section>
+  <script>
+    fetch('data.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('output');
+        data.forEach(restaurant => {
+          const div = document.createElement('div');
+          div.className = 'restaurant';
 
-  <!-- Restaurants Grid -->
-  <section id="restaurants" class="p-6 max-w-6xl mx-auto">
-    <h2 class="text-2xl font-bold mb-4">أبرز المطاعم</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <!-- Restaurant Card -->
-      <div class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5" class="w-full h-48 object-cover" />
-        <div class="p-4">
-          <h3 class="font-semibold text-xl mb-1">مطعم الطربوش</h3>
-          <p class="text-sm text-gray-600 mb-2">أكل مصري تقليدي</p>
-          <div class="flex items-center mb-2 text-yellow-500">
-            ⭐⭐⭐⭐☆ (4.2)
-          </div>
-          <a href="#" class="text-red-500 hover:underline font-medium">عرض التقييمات</a>
-        </div>
-      </div>
-      <!-- Add more cards as needed -->
-    </div>
-  </section>
+          div.innerHTML = `
+            <h2>${restaurant.name}</h2>
+            <p><strong>النوع:</strong> ${restaurant.type}</p>
+            <p><strong>متوسط التقييم:</strong> <span class="rating">${restaurant.rating}</span></p>
+            <h4>التقييمات السلبية:</h4>
+            ${restaurant.reviews.map(r => `
+              <div class="review">
+                <p><strong>${r.author}:</strong> ${r.comment}</p>
+                <p>⭐ ${r.rating} من 5 (${r.source})</p>
+              </div>
+            `).join('')}
+          `;
 
-  <!-- Featured Reviews -->
-  <section class="bg-white py-10 mt-10">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl font-bold mb-6">تقييمات مختارة</h2>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="bg-gray-100 p-4 rounded-xl">
-          <p class="text-sm mb-2">"الأكل كان ممتاز والخدمة رائعة، أنصح بتجربة الفتة!"</p>
-          <div class="text-sm text-gray-600">— أحمد، عن مطعم الطربوش</div>
-        </div>
-        <div class="bg-gray-100 p-4 rounded-xl">
-          <p class="text-sm mb-2">"الديكور جميل جدًا والقهوة ممتازة، سأعود بالتأكيد."</p>
-          <div class="text-sm text-gray-600">— سارة، عن كافيه روز</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white p-6 mt-10 text-center rounded-t-xl">
-    <p>© 2025 Dishcover. جميع الحقوق محفوظة.</p>
-    <div class="mt-2 space-x-4 rtl:space-x-reverse">
-      <a href="#" class="hover:underline">عن الموقع</a>
-      <a href="#" class="hover:underline">تواصل معنا</a>
-    </div>
-  </footer>
+          container.appendChild(div);
+        });
+      })
+      .catch(err => {
+        document.getElementById('output').innerHTML = 'فشل تحميل البيانات.';
+        console.error(err);
+      });
+  </script>
 </body>
 </html>
